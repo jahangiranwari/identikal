@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+$LOAD_PATH.unshift(File.dirname(__FILE__) + '/../lib')
+require 'optparse'
+require 'identikal'
+
+ARGV << '-h' if ARGV.empty?
+compare_method = :all
+verbose = false
+OptionParser.new do |parser|
+  parser.banner = 'Usage: identikal [options] PDF_1 PDF_2'
+  parser.on('-t', '--text', 'Only compare text') do
+    compare_method = :text
+  end
+
+  parser.on('-v', '--verbose', 'Verbose output') do
+    verbose = true
+  end
+
+  parser.on('-h', '--help', 'Print this help') do
+    puts parser
+    exit
+  end
+end.parse!
+
+file_a = ARGV[0]
+file_b = ARGV[1]
+
+begin
+  result = Identikal.files_same? file_a, file_b, compare_method: compare_method
+rescue ArgumentError => e
+  warn "Error: #{e.message}"
+  exit(1)
+end
+
+if verbose
+  puts 'Files are identical' if result
+  puts 'Files are different' unless result
+else
+  puts result
+end
