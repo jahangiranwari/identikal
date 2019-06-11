@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'Verify if two given PDF files are identical or not.'
   spec.description = <<-DESCRIPTION
-    No frill gem that does one thing and only one thing. Checks whether two given PDF files are identical or not.
+    A no frills gem that does one thing and only one thing. Checks whether two given PDF files are identical or not.
     PDF comparison done in pure Ruby.
   DESCRIPTION
   spec.homepage      = 'https://github.com/jahangiranwari/identikal'
