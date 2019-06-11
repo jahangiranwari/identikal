@@ -1,46 +1,45 @@
+# frozen_string_literal: true
 
-lib = File.expand_path("../lib", __FILE__)
+lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "identikal/version"
+require 'identikal/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "identikal"
+  spec.name          = 'identikal'
   spec.version       = Identikal::VERSION
-  spec.authors       = ["Jahangir Anwari"]
-  spec.email         = ["jahangir.rubygems@gmail.com"]
+  spec.authors       = ['Jahangir Anwari']
+  spec.email         = ['jahangir.rubygems@gmail.com']
 
-  spec.summary       = 'Compare two PDF files to check if they are identical or not.'
-  spec.description   =  <<-DESCRIPTION
+  spec.summary       = 'Verify if two given PDF files are identical or not.'
+  spec.description = <<-DESCRIPTION
     No frill gem that does one thing and only one thing. Checks whether two given PDF files are identical or not.
     PDF comparison done in pure Ruby.
   DESCRIPTION
-  spec.homepage      = "https://github.com/jahangiranwari/identikal"
-  spec.license       = "MIT"
+  spec.homepage      = 'https://github.com/jahangiranwari/identikal'
+  spec.license       = 'MIT'
 
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
   if spec.respond_to?(:metadata)
-    spec.metadata["allowed_push_host"] = "https://rubygems.org"
-
-    spec.metadata["homepage_uri"] = spec.homepage
-    spec.metadata["source_code_uri"] = spec.homepage
+    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
+    spec.metadata['homepage_uri'] = spec.homepage
+    spec.metadata['source_code_uri'] = spec.homepage
   else
-    raise "RubyGems 2.0 or newer is required to protect against " \
-      "public gem pushes."
+    raise 'RubyGems 2.0 or newer is required to protect against ' \
+      'public gem pushes.'
   end
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  spec.files = Dir.chdir(File.expand_path(__dir__)) do
+    `git ls-files -z`.split("\x0").reject do |f|
+      f.match(%r{^(test|spec|features)/})
+    end
   end
-  spec.bindir        = "exe"
+
+  spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = ['lib']
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake', '~> 10.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 0.71.0'
   spec.add_dependency 'hexapdf', '~> 0.6.0'
   spec.add_dependency 'pdf-reader', '~> 2.2.0'
