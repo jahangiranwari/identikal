@@ -48,8 +48,8 @@ module Identikal
 
       def text_compare(reader_a, reader_b)
         reader_a.page_count.times do |i|
-          text_a = reader_a.pages[i].text.gsub!(/\n+|\s+/, '')
-          text_b = reader_b.pages[i].text.gsub!(/\n+|\s+/, '')
+          text_a = reader_a.pages[i].text.gsub(/\n+|\s+/, '')
+          text_b = reader_b.pages[i].text.gsub(/\n+|\s+/, '')
           return false unless text_a == text_b
         end
         true
